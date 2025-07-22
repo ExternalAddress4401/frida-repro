@@ -66,19 +66,7 @@ async function run() {
   let file = fs
     .readFileSync(`./${outfile}`)
     .toString()
-    .replaceAll(
-      "bo.HTTPParser=T",
-      "go.ok=function(){return true;};go.equal=function(){return true;};bo.HTTPParser=T"
-    )
     .split("\n");
-  for (var i = 0; i < file.length; i++) {
-    const line = file[i].trim();
-    if (line.startsWith("exports.HTTPParser = HTTPParser2;")) {
-      file[i] =
-        "assert2.ok=function(){return true;};assert2.equal=function(){return true;};" +
-        line;
-    }
-  }
 
   if (prod) {
     const write = prod ? xor(file.join("\n")) : file.join("\n");
