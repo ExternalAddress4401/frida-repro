@@ -52,11 +52,6 @@ let shim = {
   },
 };
 
-/**
- * Something in the assert library is broken so we need to do some patching here.
- * - assert2 in the non minified file is undefined to we comment out those asserts
- * - in the minified file we add an empty OK function to the exported assert object
- */
 async function run() {
   const prod = process.argv.includes("-prod");
   const test = process.argv.includes("-test");
